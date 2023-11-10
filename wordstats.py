@@ -5,7 +5,7 @@
 # Each column of the resulting file contains the word token and its frequency in each separate file
 # So each column can then be used for distribution model fitting.
 #
-# You can open resulting file with stats as csv with fields separated by spaces. 
+# You can open resulting file with stats as csv with fields separated by tabs. 
 #
 # This script is used together with compress.py which prepares text collection for this script
 # 
@@ -61,8 +61,8 @@ with open(output_file_name, 'w') as output_file:
         if g[word] < min_frequency or g[word] > max_frequency:
             del g[word]
         else:
-            # Write remaining words separated by spaces to the output file
-            output_file.write(word + ' ')
+            # Write remaining words separated by tabs to the output file
+            output_file.write(word + '\t')
     output_file.write('\n')
 
     # Loop through each line processed
@@ -70,7 +70,7 @@ with open(output_file_name, 'w') as output_file:
         # Loop through each word in the g dictionary
         for word in list(g.keys()):
             # Write frequency of word in line to the output file
-            output_file.write(str(l.get((i, word), 0)) + ' ')
+            output_file.write(str(l.get((i, word), 0)) + '\t')
         output_file.write('\n')
 
     print("Word frequency calculation complete. Output saved to", output_file)
