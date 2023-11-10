@@ -27,7 +27,13 @@ def process_file(file_path):
 
 def process_directory(input_directory, output_file):
     with open(output_file, 'w', encoding='utf-8') as output:
-        for filename in os.listdir(input_directory):
+        # List all files in the directory
+        filenames = os.listdir(input_directory)
+
+        # Sort files numerically and then alphabetically
+        filenames = sorted(filenames, key=lambda x: (int(re.search(r'\d+', x).group()) if re.search(r'\d+', x) else float('inf'), x))
+
+        for filename in filenames:
             if filename.endswith('.txt'):  # Process only text files
                 file_path = os.path.join(input_directory, filename)
                 processed_content = process_file(file_path)
