@@ -2,35 +2,46 @@
 
 Word frequency calculation tools for corpus linguistics. It includes scripts:
 
-1. **compress.py**: Combines texts from separate files, performs elementary parsing, and removes punctuation marks. The processed text is then saved as `output.txt` for further analysis.
+**compress.py**: Combines txt files into a "corpus", performs elementary parsing, and removes punctuation marks. The processed text is then saved for further analysis.
 
-2. **wordstats.py**: Analyzes the word frequency distribution in the `output.txt` file and generates statistics. The results are saved in a text file with fields separated by tabs.
+**wordstats.py**: Analyzes the word frequency distribution in corpus file and word frequency lists. The results are saved in a text file with fields separated by tabs.
+
+**calculate.py**: Get some statistics from word frequencies.
 
 ## Usage
 
 ### compress.py
 
-To combine texts and prepare `input.txt`:
+Combine texts and prepare `corpus.txt`:
 
 bash
 ```
-python compress.py /path/to/texts output.txt
+python compress.py /path/to/texts corpus.txt
 ```
 
-This script takes text files from the specified directory, combines them, performs parsing, and removes punctuation marks. The resulting processed text is saved as output.txt.
+This script takes text files from the specified directory, combines them, performs parsing, and removes punctuation marks.
 
 ### wordstats.py
 
-To count word frequencies and generate statistics:
+Count word frequencies:
 
 bash
 ```
-python word_freq_stats.py input.txt output_stats.txt min_frequency max_frequency
+python wordstats.py corpus.txt frequencies.txt min_frequency max_frequency
+```
+
+### calculate.py
+
+Now data is ready, we can calculate sum, mean, variance, and dispersion for each word-token. Input file must be in tab-separated format.
+
+bash
+```
+python calculate.py frequencies.txt final_stats.txt
 ```
 
 ### Research Publication
 
-The scripts in this repository were utilized in the following research publication:
+The scripts in this repository reproduce the following research:
 
 **Title:** [The Negative Binomial Model of Word Usage](http://siba-ese.unisalento.it/index.php/ejasa/article/view/12119)
 **Authors:** Nina Alexeyeva, Alexandre Sotov
