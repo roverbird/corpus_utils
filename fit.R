@@ -1,6 +1,8 @@
 # This is an R script to estimate k and p parameters for NBD (Negative Binomial Distribution)
 # assuming that word frequency distributions follow NBD
 # Usage: Rscript myscript.R /path/to/inputfile.txt /path/to/outputfile.txt
+# WARNING! Running this script can be compute-intensive operation, use at your own risk. 
+# No liability of any kind.
 
 # Load the bbmle library
 library("bbmle")
@@ -59,10 +61,14 @@ for (i in c(1:nrow(filet))) {
   }
 }
 
+
+header="word	k	p	sqrt_kp"
+write(header, file = output_file)
+
 # Create a data frame with word, size, probability, and sqrt_kp
 # If you want to print actual word frequencies (such as for diagnositcs, change to this: "filet[, ]" )
-d <- data.frame(word = filet[,0], k = vsize, p = vprob, sqrt_kp = sqrt_kp)
+d <- data.frame(word = filet[, 0], k = vsize, p = vprob, sqrt_kp = sqrt_kp)
 
-# Write the results to a tab-separated file
-write.table(d, file = output_file, sep = "\t")
+# Write the results to a tab-separated file with custom column names in the header
+write.table(d, file = output_file, sep = "\t", quote = FALSE, row.names = TRUE, col.names = FALSE, append = TRUE)
 

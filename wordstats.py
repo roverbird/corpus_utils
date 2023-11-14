@@ -12,6 +12,9 @@
 # Usage: python wordstats.py input.txt result.txt 3 100000 
 # You can set word token frequnecy cut-off: 3 is min frequency and 100000 is max frequecy
 #
+# WARNING! Running this script can be compute-intensive operation, use at your own risk. 
+# No liability of any kind.
+#
 
 import sys
 import re
@@ -61,8 +64,8 @@ with open(output_file_name, 'w') as output_file:
         if g[word] < min_frequency or g[word] > max_frequency:
             del g[word]
         else:
-            # Write remaining words separated by tabs to the output file
-            output_file.write(word + '\t')
+            # Write remaining words separated by spaces to the output file
+            output_file.write(word + ' ')
     output_file.write('\n')
 
     # Loop through each line processed
@@ -70,8 +73,17 @@ with open(output_file_name, 'w') as output_file:
         # Loop through each word in the g dictionary
         for word in list(g.keys()):
             # Write frequency of word in line to the output file
-            output_file.write(str(l.get((i, word), 0)) + '\t')
+            output_file.write(str(l.get((i, word), 0)) + ' ')
         output_file.write('\n')
+
+# Now, open the file in write mode and remove the last column using strip()
+with open(output_file.name, "r+") as file:
+    lines = file.readlines()
+    file.seek(0)
+    for line in lines:
+        # Remove the last column by stripping the trailing whitespace, including the last tab character
+        file.write(line.rstrip() + '\n')
+    file.truncate()
 
     print("Word frequency calculation complete. Output saved to", output_file)
 
