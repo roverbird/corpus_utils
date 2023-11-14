@@ -1,5 +1,5 @@
 # This calculates sum, mean, variance, and dispersion for each word-token
-# Input is read from tab-separated file prepared by wordstats.py
+# Input is read from space-separated file prepared by wordstats.py
 
 import csv
 import sys
@@ -15,7 +15,7 @@ output_file = sys.argv[2]
 
 # Read data from the input file
 with open(input_file, 'r', newline='') as csvfile:
-    reader = csv.reader(csvfile, delimiter='\t')
+    reader = csv.reader(csvfile, delimiter=' ')
     header = next(reader)  # Assuming the first row is the header
     data = {word: [] for word in header}
 

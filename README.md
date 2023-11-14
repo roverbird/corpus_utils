@@ -37,7 +37,7 @@ Here, min word token frequency is 3, max word token frequency is 10000. For larg
 
 ### calculate.py
 
-Now data is ready, we can calculate sum, mean, variance, and dispersion for each word-token. Input file must be in tab-separated format.
+Now data is ready, we can calculate sum, mean, variance, and dispersion for each word-token. Input file, frequencies.txt, must be space-separated.
 
 bash
 ```

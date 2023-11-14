@@ -81,7 +81,7 @@ with open(output_file.name, "r+") as file:
     lines = file.readlines()
     file.seek(0)
     for line in lines:
-        # Remove the last column by stripping the trailing whitespace, including the last tab character
+        # Remove the last column by stripping the trailing whitespace
         file.write(line.rstrip() + '\n')
     file.truncate()
 
