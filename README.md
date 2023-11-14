@@ -4,7 +4,7 @@ Word frequency calculation tools for corpus linguistics. It includes scripts:
 
 **compress.py**: Combines txt files into a "corpus", performs elementary parsing, and removes punctuation marks. The processed text is then saved for further analysis.
 
-**wordstats.py**: Analyzes the word frequency distribution in corpus file and word frequency lists. The results are saved in a text file with fields separated by tabs.
+**wordstats.py**: Prepares word frequency lists. The results are saved to a text file.
 
 **calculate.py**: Get some statistics from word frequencies.
 
