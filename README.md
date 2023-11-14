@@ -8,15 +8,17 @@ Word frequency calculation tools for corpus linguistics. It includes scripts:
 
 **calculate.py**: Get some statistics from word frequencies.
 
+**fit.R**: R script to estimate k and p parameters for NBD (Negative Binomial Distribution) assuming that word frequency distributions follow NBD
+
 ## Usage
 
 ### compress.py
 
-Combine texts and prepare `corpus.txt`:
+Combine texts and prepare `corpus.txt`, the text corpus file:
 
 bash
 ```
-python compress.py /path/to/texts corpus.txt
+python ~/corpus_utils/compress.py /path/to/texts corpus.txt
 ```
 
 This script takes text files from the specified directory, combines them, performs parsing, and removes punctuation marks.
@@ -27,8 +29,9 @@ Count word frequencies:
 
 bash
 ```
-python wordstats.py corpus.txt frequencies.txt min_frequency max_frequency
+python ~/corpus_utils/wordstats.py corpus.txt frequencies.txt 3 10000
 ```
+Here, min word token frequency is 3, max word token frequency is 10000.
 
 ### calculate.py
 
@@ -36,7 +39,16 @@ Now data is ready, we can calculate sum, mean, variance, and dispersion for each
 
 bash
 ```
-python calculate.py frequencies.txt final_stats.txt
+python ~/corpus_utils/calculate.py frequencies.txt final_stats.txt
+```
+### fit.R
+
+Using prepared data, estimate k and p parameters for NBD
+
+bash
+```
+Rscript ~/corpus_utils/fit.R frequencies.txt results.tab
+
 ```
 
 ### Research Publication
