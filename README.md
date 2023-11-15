@@ -73,10 +73,10 @@ Plot3D.R creates 3D scatterplot from data, which was prepared using fit.R, where
 
 bash
 ```
-Rscript plot3D.R input.txt output.png 0.1
+Rscript plot3D.R input.txt output.png 20 0.1
 ```
 
-In this example, 0.1 is thresholp value of NBD parameters k and p. Try experimenting with this value to zoom in and out of the plot. Interesting values are between 0.1 and 0.7, see graphs in the repo.
+In this example, **20** is rotation angle of the scatterplot, **0.1** is thresholp value of NBD parameters k and p. Try experimenting with this value to zoom in and out of the plot. Interesting values are between 0.1 and 0.7, see graphs in the repo.
 
 ### Add-ons
 
