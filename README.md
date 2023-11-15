@@ -66,7 +66,7 @@ Rscript plot.R input.txt output.png 0.1
 
 In this example, 0.1 is thresholp value of NBD parameters k and p. Try experimenting with this value to zoom in and out of the plot. Interesting values are between 0.1 and 0.7, see graphs in the repo.
 
-### plot.R
+### plot3D.R
 
 
 Plot3D.R creates 3D scatterplot from data, which was prepared using fit.R, where x axis is parameter k, y - parameter p, and z - Document Frequency (DF) The higher the DF, the more texts in the coprus contain the word. So, widespread words have higher DF value. This is not to be confused with absolute frequency of the word, measured by 'sum' in data prepared with fit.R
