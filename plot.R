@@ -41,13 +41,19 @@ png(
 )
 
 # Set margins
-par(mar = c(5, 5, 4, 2) + 0.1)  # c(bottom, left, top, right) + extra space
+par(mar = c(10, 10, 10, 10) + 0.1)  # c(bottom, left, top, right) + extra space
 
 # Plot the data with larger dots
-plot(x_values, y_values, main = paste("Scatter Plot, threshold =", threshold), xlab = colnames(data)[2], ylab = colnames(data)[3], pch = 20, col = "blue", cex = 1.5, cex.main = 2.5, cex.lab = 2)
+plot(x_values, y_values, main = paste("Input:", input_file, " Output:", output_file, " Threshold =", threshold), xlab = colnames(data)[2], ylab = colnames(data)[3], pch = 20, col = "blue", cex = 2, cex.main = 2.5, cex.lab = 2)
+
+# Add labels to the points with random variation so that they do not collide
+set.seed(123)
+random_variation <- runif(length(x_values), min = -0.01, max = 0.01)  # Adjust the range as needed
+text(x_values, y_values + random_variation, 
+     labels = filtered_data$word, pos = 3, col = "red")
 
 # Add labels to the points
-text(x_values, y_values, labels = filtered_data$word, pos = 3, col = "red")
+#text(x_values, y_values, labels = filtered_data$word, pos = 3, col = "red")
 
 # Save the plot
 dev.off()
