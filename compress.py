@@ -12,6 +12,7 @@
 
 import os
 import re
+import string
 import sys
 
 def clean_html_tags(text):
@@ -22,7 +23,13 @@ def process_file(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
         content = file.read()
         content = clean_html_tags(content)
-        content = content.replace('\n', ' ').replace('\r', '')  # Remove new lines and line returns
+
+        # Replace punctuation with spaces
+        punctuation_chars = string.punctuation
+        translator = str.maketrans(punctuation_chars, ' ' * len(punctuation_chars))
+        content = content.translate(translator)
+
+        content = content.replace('\n', ' ').replace('\r', ' ')  # Remove new lines and line returns
         return content
 
 def process_directory(input_directory, output_file):

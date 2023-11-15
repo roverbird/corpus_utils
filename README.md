@@ -12,6 +12,8 @@ Word frequency calculation tools for corpus linguistics. It includes scripts:
 
 **plot.R**: R script to draw plots from data prepared by fit.R
 
+**plot3D.R**: R script to draw 3D plots from data prepared by fit.R
+
 ## Usage
 
 ### compress.py
@@ -45,7 +47,7 @@ python ~/corpus_utils/calculate.py frequencies.txt final_stats.txt
 ```
 ### fit.R
 
-Using prepared data, estimate k and p parameters for NBD. This is a compute-intensive operation and may take some time, especially for a larger dataset file. Run at your own risk.
+Using prepared data, estimate k and p parameters for NBD. Calculate sum for each word-token (absolute frequency in texts) and Document Frequency (DF). This is a compute-intensive operation and may take some time, especially for a larger dataset file. Run at your own risk.
 
 bash
 ```
@@ -60,6 +62,18 @@ Plot.R creates scatterplot from data, which was prepared using fit.R
 bash
 ```
 Rscript plot.R input.txt output.png 0.1
+```
+
+In this example, 0.1 is thresholp value of NBD parameters k and p. Try experimenting with this value to zoom in and out of the plot. Interesting values are between 0.1 and 0.7, see graphs in the repo.
+
+### plot.R
+
+
+Plot3D.R creates 3D scatterplot from data, which was prepared using fit.R, where x axis is parameter k, y - parameter p, and z - Document Frequency (DF) The higher the DF, the more texts in the coprus contain the word. So, widespread words have higher DF value. This is not to be confused with absolute frequency of the word, measured by 'sum' in data prepared with fit.R
+
+bash
+```
+Rscript plot3D.R input.txt output.png 0.1
 ```
 
 In this example, 0.1 is thresholp value of NBD parameters k and p. Try experimenting with this value to zoom in and out of the plot. Interesting values are between 0.1 and 0.7, see graphs in the repo.

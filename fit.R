@@ -28,15 +28,24 @@ minuslogl <- function(size, prob, x) {
   -sum(dnbinom(x = x, size = size, prob = prob, log = TRUE))
 }
 
-# Initialize vectors for size, probability, and sqrt_kp
+# Initialize vectors for size, probability, and sqrt_kp, sum, and document frequency (DF)
 vsize <- numeric(0)
 vprob <- numeric(0)
 sqrt_kp <- numeric(0)
+sum_vector <- numeric(0)
+doc_freq <- numeric(0)
 
 # Iterate through columns of the transposed data
 for (i in c(1:nrow(filet))) {
-  # Extract numeric data from the current column, excluding the first element
-  file <- as.numeric(filet[i, -(1:1)])
+  # Extract numeric data from the current column
+  file <- as.numeric(filet[i, ])
+
+  # Calculate the sum for the current column
+  sum_vector[i] <- sum(file)
+
+  # Calculate the document frequency for the current column
+  # DF (document frequency) is in how many document a word is found
+  doc_freq[i] <- sum(file != 0)
 
   # Check if there is variability in the data
   if (var(file) == 0) {
@@ -61,13 +70,12 @@ for (i in c(1:nrow(filet))) {
   }
 }
 
-
-header="word	k	p	sqrt_kp"
+header="word	k	p	sqrt_kp	sum	DF"
 write(header, file = output_file)
 
 # Create a data frame with word, size, probability, and sqrt_kp
 # If you want to print actual word frequencies (such as for diagnositcs, change to this: "filet[, ]" )
-d <- data.frame(word = filet[, 0], k = vsize, p = vprob, sqrt_kp = sqrt_kp)
+d <- data.frame(word = filet[, 0], k = vsize, p = vprob, sqrt_kp = sqrt_kp, sum = sum_vector, df = doc_freq)
 
 # Write the results to a tab-separated file with custom column names in the header
 write.table(d, file = output_file, sep = "\t", quote = FALSE, row.names = TRUE, col.names = FALSE, append = TRUE)

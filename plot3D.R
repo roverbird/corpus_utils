@@ -1,7 +1,9 @@
-# Plot.R creates scatterplot from data, which was prepared using fit.R
+# Plot3D.R creates 3D scatterplot from data, which was prepared using fit.R
 # Usage: Rscript plot.R input.txt output.png 0.1
 # 0.1 is thresholp value of NBD parameters k and p.
 # Try experimenting with this value to zoom in and out of the plot.
+# Z-axis id Document Frequency (DF), the higher the value, the more
+# text in the corpus contain the word.
 # Interesting values are between 0.1 and 0.7, see graphs in the repo.
 
 # Check if both input and output file names are provided
@@ -14,13 +16,13 @@ input_file <- commandArgs(trailingOnly = TRUE)[1]
 output_file <- commandArgs(trailingOnly = TRUE)[2]
 threshold <- as.numeric(commandArgs(trailingOnly = TRUE)[3])
 
-
 # Read the data from the text file
 data <- read.table(input_file, sep = "\t", header = TRUE)
 
-# Extract columns B and C
+# Extract columns k, p, DF
 x_values <- data$k
 y_values <- data$p
+z_values <- data$DF
 
 # Filter data based on conditions
 filtered_data <- subset(data, k < threshold & p < threshold)
@@ -28,9 +30,9 @@ filtered_data <- subset(data, k < threshold & p < threshold)
 # Extract columns k and p from the filtered data
 x_values <- log(filtered_data$k)  # Apply log scale to x-axis
 y_values <- filtered_data$p
+z_values <- filtered_data$DF
 
 # Set up PNG output file
-
 png(
   output_file,
   width     = 6.25,
@@ -43,17 +45,14 @@ png(
 # Set margins
 par(mar = c(10, 10, 10, 10) + 0.1)  # c(bottom, left, top, right) + extra space
 
-# Plot the data with larger dots
-plot(x_values, y_values, main = paste("Input:", input_file, " Output:", output_file, " Threshold =", threshold, " Log scale for k value"), xlab = colnames(data)[2], ylab = colnames(data)[3], pch = 20, col = "blue", cex = 2, cex.main = 2.5, cex.lab = 2)
+# 3D Plot
+library(scatterplot3d)
 
-# Add labels to the points with random variation so that they do not collide
-set.seed(123)
-random_variation <- runif(length(x_values), min = -0.01, max = 0.01)  # Adjust the range as needed
-text(x_values, y_values + random_variation, 
-     labels = filtered_data$word, pos = 3, col = "red")
+# Create the scatter plot
+scatterplot <- scatterplot3d(x = x_values, y = y_values, z = z_values, main = paste("Input:", input_file, " Output:", output_file, " Threshold =", threshold, "Log scale for k-value."), xlab = colnames(data)[2], ylab = colnames(data)[3], zlab = "DF", pch = 20, angle = 70)
 
-# Add labels to the points
-#text(x_values, y_values, labels = filtered_data$word, pos = 3, col = "red")
+# Add labels from column A to each point
+text(scatterplot$xyz.convert(x_values, y_values, z_values), labels = filtered_data$word, pos = 3, col = "red", cex = 1)
 
 # Save the plot
 dev.off()
