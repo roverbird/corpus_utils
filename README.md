@@ -1,6 +1,10 @@
 # corpus_utils
 
-Word frequency calculation tools for corpus linguistics. It includes scripts:
+##Word Space Visualization
+
+This repository contains R scripts for visualizing word spaces based on the analysis of word frequency distributions. The visualization is designed to reveal thematic patterns within the distribution of words, especially named entities, assuming a Negative Binomial Distribution. The resulting plots provide insights into the semantic space of the analyzed collection of texts, aiding in the exploration of key themes and relationships among words. This can be useful when one needs to visualize keywords, or feature words, within a large collection of homogenious texts, such as medical articles, e-mails, news, reviews, or, for example an entire novel.
+
+What is included:
 
 **compress.py**: Combines txt files into a "corpus", performs elementary parsing, and removes punctuation marks. The processed text is then saved for further analysis.
 
