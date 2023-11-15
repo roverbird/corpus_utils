@@ -19,7 +19,7 @@ threshold <- as.numeric(commandArgs(trailingOnly = TRUE)[3])
 # Read the data from the text file
 data <- read.table(input_file, sep = "\t", header = TRUE)
 
-# Extract columns k, p, DF
+# Extract columns k, p, DF, sum
 x_values <- data$k
 y_values <- data$p
 z_values <- data$DF
@@ -71,10 +71,10 @@ scatterplot <- scatterplot3d(
       grid=TRUE, 
       box=FALSE)
 
-# Scale the size variable (fr) to be between a desired range, e.g., 1 and 3
+# Scale the size variable (fr, word frequency, or 'sum' in our data) to be between a desired range
 scaled_size <- 1 + 10 * (fr - min(fr)) / (max(fr) - min(fr))
 
-# Set the transparency level (alpha)
+# Set the transparency level (alpha) for points
 alpha <- 0.2  # Adjust the transparency level as needed (0 = fully transparent, 1 = opaque)
 
 # Create a color vector with opacity
@@ -91,7 +91,6 @@ normalized_z <- (z_values - min(z_values)) / (max(z_values) - min(z_values))  # 
 label_size <- 1 + 3 * normalized_z  # Adjust the scaling factor as needed
 
 text(scatterplot$xyz.convert(x_values, y_values, z_values), labels = filtered_data$word, pos = 3, col = "red", cex = label_size)
-
 
 # Save the plot
 dev.off()
