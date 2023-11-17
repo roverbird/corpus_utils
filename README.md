@@ -86,6 +86,9 @@ In this example, **20** is rotation angle of the scatterplot, **0.1** is thresho
 
 ### plot3D2.R
 
+First, prepare data with fit2.R.
+fit2.R is similar to fit2.R, but offers more functionality (calculated DF and other values).
+
 bash
 ```
 Rscript plot3Dcat2.R input.txt output.png 300
