@@ -62,15 +62,18 @@ Rscript ~/corpus_utils/fit.R frequencies.txt results.tab
 ```
 ### plot.R
 
-
 Plot.R creates scatterplot from data, which was prepared using fit.R 
 
 bash
 ```
-Rscript plot.R input.txt output.png 0.1
+Rscript plot.R input.txt output.png 0.5
 ```
 
-In this example, 0.1 is thresholp value of NBD parameters k and p. Try experimenting with this value to zoom in and out of the plot. Interesting values are between 0.1 and 0.7, see graphs in the repo.
+In this example, 0.5 is thresholp value of NBD parameters k and p. Try experimenting with this value to zoom in and out of the plot. Interesting values are between 0.1 and 0.7, see graphs in the repo.
+
+This plot shows 2D visualisation of Melville's Moby Dick with such settings:
+
+![Plot example 1](https://raw.githubusercontent.com/roverbird/corpus_utils/main/examples/graphs/moby05.png)
 
 ### plot3D.R
 
@@ -113,7 +116,7 @@ k > 0 & p > 0 & fr > 50 & df < 250 # Word frequency is over 50, and the word is 
 
 Example with k > 0 & p > 0 & fr > 50 & df < 500 for Russian Fairy Tales, image is zoomable.
 
-![alt text](https://raw.githubusercontent.com/roverbird/corpus_utils/main/examples/graphs/tales3Dver2.png)
+![Plot example 2](https://raw.githubusercontent.com/roverbird/corpus_utils/main/examples/graphs/tales3Dver2.png)
 
 ### Add-ons
 
