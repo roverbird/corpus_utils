@@ -111,6 +111,10 @@ Say, you have a collection of 500 texts. You only want to see data for tokens th
 
 k > 0 & p > 0 & fr > 50 & df < 250 # Word frequency is over 50, and the word is met in half of texts. 
 
+Example with k > 0 & p > 0 & fr > 50 & df < 500 for Russian Fairy Tales, image is zoomable.
+
+![alt text](https://raw.githubusercontent.com/roverbird/corpus_utils/main/examples/graphs/tales3Dver2.png)
+
 
 ### Add-ons
 
