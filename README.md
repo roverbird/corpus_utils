@@ -10,7 +10,7 @@ This repository contains R scripts for visualizing word spaces based on the anal
 
 What is included:
 
-**loader.py** Download and parse any Project Gutenberg book for analysis with **wordstats.py**
+**gutenberg.py** Download and parse any [Project Gutenberg](https://gutenberg.org/) book to prepare for analysis with **wordstats.py**
 
 **compress.py**: Combines txt files into a "corpus", performs elementary parsing, and removes punctuation marks. The processed text is then saved for further analysis.
 
