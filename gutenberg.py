@@ -5,7 +5,7 @@ import os
 import re
 
 # URL for the Gutenberg book txt
-url = "https://www.gutenberg.org/cache/epub/72130/pg72130.txt"
+url = "https://www.gutenberg.org/cache/epub/31130/pg31130.txt"
 
 # Extract the last part of the URL as the output file name
 output_file_name = os.path.basename(url).split('.')[0]
