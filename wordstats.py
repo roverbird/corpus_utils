@@ -1,18 +1,13 @@
 # This script converts text file to lowercase and replaces punctuation characters with spaces, 
 # counts the frequency of each word in each line and in the entire text, and outputs list of words 
-# that occur between 3 and 100,000 times and the frequency of each of these words in each line.
+# that occur between min_frequency and max_frequency.
 #
-# Each column of the resulting file contains the word token and its frequency in each separate file
-# So each column can then be used for distribution model fitting.
-#
-# You can open resulting file with stats as csv with fields separated by tabs. 
-#
-# This script is used together with compress.py which prepares text collection for this script
+# You can open resulting file as csv with fields separated by tabs for inspection.
+# Next step: use the resulting file with fit.R script.
 # 
 # Usage: python wordstats.py input.txt result.txt 3 100000 
-# You can set word token frequnecy cut-off: 3 is min frequency and 100000 is max frequecy
+# Explained: set word token frequnecy cut-off to 3 as min frequency and 100000 as max frequency.
 #
-# WARNING! Running this script can be compute-intensive operation, use at your own risk. 
 # No liability of any kind.
 #
 
