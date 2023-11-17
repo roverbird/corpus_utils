@@ -6,6 +6,8 @@ This repository contains R scripts for visualizing word spaces based on the anal
 
 What is included:
 
+**loader.py** Download and parse any Project Gutenberg book for analysis with **wordstats.py**
+
 **compress.py**: Combines txt files into a "corpus", performs elementary parsing, and removes punctuation marks. The processed text is then saved for further analysis.
 
 **wordstats.py**: Prepares word frequency lists. The results are saved to a text file.
