@@ -1,4 +1,4 @@
-# Plot3Dca2.R offers improved visualisation of input data.
+# Plot3D2.R offers improved visualisation of input data.
 #It creates 3D scatterplot and allows for control of data filters.
 # Usage: Rscript plot3Dcat2.R input.txt output.png 300
 # 300 is the projection angle
