@@ -6,9 +6,13 @@ Just copy the scripts. You must have python and R installed.
 
 ## Word Space Visualization
 
-This repository contains R scripts for visualizing word spaces based on the analysis of word frequency distributions. The visualization is designed to reveal thematic patterns within the distribution of words, especially named entities, assuming a Negative Binomial Distribution. The resulting plots provide insights into the semantic space of the analyzed collection of texts, aiding in the exploration of key themes and relationships among words. This can be useful when one needs to visualize keywords, or feature words, within a large collection of homogenious texts, such as medical articles, e-mails, news, reviews, or, for example an entire novel.
+This repository contains R scripts for visualizing word spaces based on the analysis of word frequency distributions. The visualization is designed to reveal semantic similarity within the distribution of words, especially named entities, or "hero words", assuming a Negative Binomial Distribution of them. For each word, a pair of parameters is calculated, namely NBD parameters k and p, and they can be viewed as word embeddings induced from a text corprus. 
 
-What is included:
+Visualize word embeddings in 2D or 3D space so that you can examine the spatial relationships between words and inspect clusters or semantic groupings. The resulting plots provide insights into the relation of words inside the corpus, aiding in the exploration of key themes and relationships among words. Set filters to view main heros or remarkable background content words. This can be useful when one needs to visualize keywords, or feature words, even within a small collection of homogenious texts, such a novel. 
+
+Of course, you can use the NBD technique also for larger collections of texts, such as medical articles, e-mails, user reviews, news. There really no limit of how large a collection of texts can be, but it is essencial that the corpus itself is meaningful.
+
+### What is included:
 
 **gutenberg.py** Download and parse any [Project Gutenberg](https://gutenberg.org/) book to prepare for analysis with **wordstats.py**
 
