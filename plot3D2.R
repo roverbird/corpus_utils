@@ -21,7 +21,10 @@ if (length(commandArgs(trailingOnly = TRUE)) < 3) {
 # Values to map content background words: k > 5 & p > 0.8
 # Values to map names of heros: k < 0.1 & p < 0.1 
 ############################################################
-filters <- expression(k > 0 & p > 0 & fr > 50 & df < 500)
+#filters <- expression(k > 4 & p > 0.6 & fr > 25 & df < 500) #background
+filters <- expression(k < 0.1 & p < 0.1 & fr > 25 & df < 500) #hero
+#filters <- expression(k > 0 & p > 0 & fr > 25 & df < 500) #all
+#filters <- expression(k > 0 & p > 0 & fr > 50 & df < 500) #all frequent
 
 # Get the input and output file names from the command line
 input_file <- commandArgs(trailingOnly = TRUE)[1]
@@ -84,7 +87,8 @@ scatterplot <- scatterplot3d(
   y = y_values,
   z = z_values,
   color = point_colors,
-  main = paste("\nSemantic Space Map for input file:", input_file, " View angle:", angle," \nFilters: ", filters, " Change filter settings in script"),
+  family="Gothic",
+  main = paste("\nSemantic Space by github.com/roverbird/corpus_utils\n", input_file, " angle:", angle," filters: ", filters),
   xlab = colnames(data)[2],
   ylab = colnames(data)[3],
   zlab = colnames(data)[6],
@@ -103,7 +107,7 @@ scatterplot <- scatterplot3d(
   mar = c(5, 5, 4, 4) + 1.5  # Adjust the margin to move axis titles outward
 )
 
-# Add regression pane
+# Add regression plane
 scatterplot$plane3d(lm(z_values ~ x_values + y_values), col = "grey")
 
 # Working on points. Scale the size depending on word frequency
