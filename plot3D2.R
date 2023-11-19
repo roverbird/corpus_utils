@@ -21,9 +21,9 @@ if (length(commandArgs(trailingOnly = TRUE)) < 3) {
 # Values to map content background words: k > 5 & p > 0.8
 # Values to map names of heros: k < 0.1 & p < 0.1 
 ############################################################
-filters <- expression(k > 4 & p > 0.6 & fr > 25 & df < 500) #background
-#filters <- expression(k < 0.1 & p < 0.1 & fr > 25 & df < 500) #hero
-#filters <- expression(k > 0 & p > 0 & fr > 25 & df < 500) #all
+#filters <- expression(k > 4 & p > 0.6 & fr > 25 & df < 500) #background
+filters <- expression(k < 0.1 & p < 0.1 & fr > 25 & df < 500) #hero
+#filters <- expression(k > 0 & p > 0 & fr > 10 & df < 500) #all
 #filters <- expression(k > 0 & p > 0 & fr > 50 & df < 500) #all frequent
 
 # Get the input and output file names from the command line

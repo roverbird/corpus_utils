@@ -149,11 +149,17 @@ Say, you have a collection of 500 texts. You only want to see data for tokens th
 
 k > 0 & p > 0 & fr > 50 & df < 250 # Word frequency is over 50, and the word is met in half of texts. 
 
-Example with k > 0 & p > 0 & fr > 50 & df < 500 for Russian Fairy Tales, image is zoomable.
+Example with k > 0 & p > 0 & fr > 50 & df < 500 for Tolstoy's "War and Peace", image is zoomable.
 
-![Plot example 2](https://raw.githubusercontent.com/roverbird/corpus_utils/main/examples/graphs/war-and-peace-bigrams-hero.png)
+![Plot example 2](https://raw.githubusercontent.com/roverbird/corpus_utils/main/examples/graphs/out2600.png)
 
-Example with Tolstoy's "War and Peace" n-grams (bi-grams, 2-grams) and filter settings to "hero": k < 0.1 & p < 0.1 & fr > 25 & df < 500. Plot created with plot3D2.R and data prepared with ngramstats.py and fit2.R.
+Example with "War and Peace", filter settings to "hero": : k < 0.1 & p < 0.1 & fr > 25 & df < 500.
+
+![Plot example 3](https://raw.githubusercontent.com/roverbird/corpus_utils/main/examples/graphs/out2600heroes.png)
+
+Example with "War and Peace" n-grams (bi-grams, 2-grams) and filter settings to "hero": k < 0.1 & p < 0.1 & fr > 25 & df < 500. Plot created with plot3D2.R and data prepared with ngramstats.py and fit2.R.
+
+![Plot example 4](https://raw.githubusercontent.com/roverbird/corpus_utils/main/examples/graphs/war-and-peace-bigrams-hero.png)
 
 ### Add-ons
 
