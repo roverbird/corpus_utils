@@ -9,7 +9,8 @@ import re
 # Go to site https://www.gutenberg.org/
 # Find a book and look for "Plain Text UTF-8" link
 # URL for the Gutenberg book txt
-url = "https://www.gutenberg.org/cache/epub/12894/pg12894.txt"
+url = "https://www.gutenberg.org/cache/epub/2600/pg2600.xt"
+
 
 # Extract the last part of the URL as the output file name
 output_file_name = os.path.basename(url).split('.')[0]

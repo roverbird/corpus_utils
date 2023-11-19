@@ -20,6 +20,8 @@ Of course, you can use the NBD technique also for larger collections of texts, s
 
 **wordstats.py**: Prepares word frequency lists. The results are saved to a text file.
 
+**ngramstats.py**: Prepares bigram frequency lists. The results are saved to a text file.
+
 **calculate.py**: Get some statistics from word frequencies using Python only.
 
 **fit.R**: R script to estimate k and p parameters for NBD (Negative Binomial Distribution) assuming that word frequency distributions follow NBD
@@ -56,6 +58,18 @@ bash
 python ~/corpus_utils/wordstats.py corpus.txt frequencies.txt 3 10000
 ```
 Here, min word token frequency is 3, max word token frequency is 10000. For larger corpora it is recommended to set min frequency to a larger value.
+
+Notice, you should not skip this step if you want to run NBD fitting with R scripts below.
+
+### ngramstats.py
+
+Count bigram frequencies:
+
+bash
+```
+python ~/corpus_utils/bigramstats.py corpus.txt frequencies.txt 10 10000
+```
+Here, min bigram frequency is 10, max word token frequency is 10000. For larger corpora it is recommended to set min frequency to a larger value.
 
 Notice, you should not skip this step if you want to run NBD fitting with R scripts below.
 
@@ -137,7 +151,9 @@ k > 0 & p > 0 & fr > 50 & df < 250 # Word frequency is over 50, and the word is 
 
 Example with k > 0 & p > 0 & fr > 50 & df < 500 for Russian Fairy Tales, image is zoomable.
 
-![Plot example 2](https://raw.githubusercontent.com/roverbird/corpus_utils/main/examples/graphs/tales3Dver2.png)
+![Plot example 2](https://raw.githubusercontent.com/roverbird/corpus_utils/main/examples/graphs/war-and-peace-bigrams-hero.png)
+
+Example with Tolstoy's "War and Peace" n-grams (bi-grams, 2-grams) and filter settings to "hero": k < 0.1 & p < 0.1 & fr > 25 & df < 500. Plot created with plot3D2.R and data prepared with ngramstats.py and fit2.R.
 
 ### Add-ons
 
