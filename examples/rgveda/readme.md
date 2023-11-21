@@ -1,4 +1,4 @@
-### Rgveda Padapatha
+### Rgveda
 
 These are text mining results for Rgveda "lemmata" from [OliverHellwig/sanskrit](https://raw.githubusercontent.com/OliverHellwig/sanskrit/master/dcs/data/rigveda/pada-and-analysis.dat) by @OliverHellwig/sanskrit
 
