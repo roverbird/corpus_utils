@@ -40,6 +40,8 @@ with open(input_file_name, 'r') as input_file:
         line = line.lower()
         # Remove all punctuation marks and replace them with spaces
         line = re.sub(r'[^\w\s]+', ' ', line)
+        # Remove words starting with 'X'(remove trash)
+        line = ' '.join(word for word in line.split() if not word.startswith('X'))
 
         # Increment line counter
         t += 1

@@ -9,7 +9,12 @@ import re
 # Go to site https://www.gutenberg.org/
 # Find a book and look for "Plain Text UTF-8" link
 # URL for the Gutenberg book txt
-url = "https://www.gutenberg.org/cache/epub/2600/pg2600.xt"
+# https://gutenberg.org/cache/epub/2554/pg2554.txt  # Crime and Punishment
+# https://www.gutenberg.org/cache/epub/2600/pg2600.txt # War and Peace
+# https://gutenberg.org/cache/epub/11/pg11.txt # Alice in Wonderland
+# https://gutenberg.org/cache/epub/1399/pg1399.txt # Anna Karenina
+# https://gutenberg.org/cache/epub/28054/pg28054.txt # Brothers Karamazov
+url = "https://www.gutenberg.org/cache/epub/28054/pg28054.txt"
 
 
 # Extract the last part of the URL as the output file name
