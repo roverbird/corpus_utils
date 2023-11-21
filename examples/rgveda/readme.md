@@ -1,6 +1,6 @@
 ### Rgveda Padapatha
 
-These are text mining results for Rgveda Padapatha from [OliverHellwig/sanskrit](https://github.com/OliverHellwig/sanskrit) @OliverHellwig/sanskrit
+These are text mining results for Rgveda "lemmata" from [OliverHellwig/sanskrit](https://raw.githubusercontent.com/OliverHellwig/sanskrit/master/dcs/data/rigveda/pada-and-analysis.dat) by @OliverHellwig/sanskrit
 
 Notice that names of deities are in word cluster 8.
 
