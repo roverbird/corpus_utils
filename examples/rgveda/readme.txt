@@ -2,7 +2,7 @@
 
 These are text mining results for Rgveda Padapatha from [OliverHellwig/sanskrit](https://github.com/OliverHellwig/sanskrit) @OliverHellwig/sanskrit
 
-Notice that names of deities are in word cluster 5.
+Notice that names of deities are in word cluster 8.
 
-Visualisation of data is available at [my site](https://sotoff.shop/rgveda/).
+Interactive visualisation of data is available at [my site](https://sotoff.shop/rgveda/).
 
