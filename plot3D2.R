@@ -22,9 +22,10 @@ if (length(commandArgs(trailingOnly = TRUE)) < 3) {
 # Values to map names of heros: k < 0.1 & p < 0.1 
 ############################################################
 #filters <- expression(k > 4 & p > 0.6 & fr > 25 & df < 500) #background
-filters <- expression(k < 0.1 & p < 0.1 & fr > 25 & df < 500) #hero
-#filters <- expression(k > 0 & p > 0 & fr > 10 & df < 500) #all
+#filters <- expression(k < 0.1 & p < 0.1 & fr > 25 & df < 500) #hero
+filters <- expression(k > 0 & p > 0 & fr > 0 & df < 500) #all
 #filters <- expression(k > 0 & p > 0 & fr > 50 & df < 500) #all frequent
+#filters <- expression(k > 0 & p > 0 & fr > 0 & df > 0 & cluster == 8) #cluster
 
 # Get the input and output file names from the command line
 input_file <- commandArgs(trailingOnly = TRUE)[1]
@@ -42,6 +43,7 @@ y_values <- data$p
 z_values <- data$DF
 fr <- data$sum
 df <- data$DF
+cluster <- data$cluster
 
 # Load filters
 filtered_data <- subset(data, eval(filters))
@@ -51,6 +53,7 @@ x_values <- filtered_data$k  # Apply log scale to x-axis
 y_values <- filtered_data$p
 z_values <- filtered_data$DF # Apply log scale to z-axis
 fr <- filtered_data$sum
+cluster <- filtered_data$cluster
 #categories <- filtered_data$CPIcat  # New line to extract the CPIcat column
 
 # Set up PNG output file
