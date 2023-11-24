@@ -32,7 +32,6 @@ minuslogl <- function(size, prob, x) {
 vsize <- numeric(0)
 vprob <- numeric(0)
 sqrt_kp <- numeric(0)
-pq_value <- numeric(0)
 sum_vector <- numeric(0)
 doc_freq <- numeric(0)
 
@@ -57,7 +56,6 @@ for (i in c(1:nrow(filet))) {
     vsize[i] <- NaN
     vprob[i] <- NaN
     sqrt_kp[i] <- NaN
-    pq_value[i] <- NaN
   } else {
     # Fit Negative Binomial Distribution using maximum likelihood estimation
     m <- mle2(
@@ -73,9 +71,6 @@ for (i in c(1:nrow(filet))) {
     vsize[i] <- coef(m)[1]
     vprob[i] <- coef(m)[2]
     sqrt_kp[i] <- sqrt(vsize[i] * vsize[i] + vprob[i] * vprob[i])
-
-    # p/q
-    pq_value[i] <- vprob[i] / (1 - vprob[i]) 
   }
 }
 
@@ -95,42 +90,50 @@ for (i in c(1:nrow(filet))) {
 
 
 # Specify the number of clusters (you can adjust this based on your requirements)
-num_clusters <- 12
+num_clusters <- 5
 
 # Create a data frame with word, size, probability, and sqrt_kp
 # If you want to print actual word frequencies (such as for diagnositcs, change to this: "filet[, ]" )
 # d <- data.frame(word = filet[, 0], k = vsize, p = vprob, sqrt_kp = sqrt_kp, sum = sum_vector, df = doc_freq, df_wf = df_wf_ratio, cpi = cpi_calculate, cpi_cat = cpi_categories)
 # d <- data.frame(word = filet[, 0], k = vsize, p = vprob, sqrt_kp = sqrt_kp, sum = sum_vector, df = doc_freq, df_wf = df_wf_ratio, cluster = cluster)
 
-### Now we will cluster words 
+### Now we will cluster words with GMM
+# Load the Mclust library for Gaussian Mixture Models
 # Create a data frame with vsize and vprob
-cluster_data <- data.frame(vsize, vprob)
 
-# Perform k-means clustering using k and p, $DF
-kmeans_result <- kmeans(cluster_data, centers = num_clusters)
+cluster_data <- data.frame(vsize = as.numeric(vsize), vprob = as.numeric(vprob))
 
-# Get the sum of squared distances for each cluster
-ssd_per_cluster <- apply(kmeans_result$centers, 1, function(centroid) sum((cluster_data - centroid)^2))
+library(mclust)
 
-# Order clusters based on sum of squared distances
-ordered_clusters <- order(ssd_per_cluster)
+# Fit a Dirichlet Process Mixture Model (DPMM)
+dpmm_result <- Mclust(cluster_data, G = 1:10)
 
-# Map original cluster numbers to ordered cluster numbers
-cluster_order_mapping <- match(kmeans_result$cluster, ordered_clusters)
+# Get the cluster assignments
+dpmm_clusters <- dpmm_result$classification
 
-# Add the ordered cluster assignment to the original data
-cluster_data$ordered_cluster <- as.factor(cluster_order_mapping)
+# Print a summary of the model
+summary(dpmm_result)
 
-# Add the cluster assignment to the original data
-#cluster_data$cluster <- as.factor(kmeans_result$cluster)
+# Add the DPMM cluster assignment to the original data
+cluster_data$dpmm_cluster <- as.factor(as.numeric(dpmm_clusters))
+
+# Check the structure of dpmm_clusters
+str(dpmm_clusters)
+
+# If you want to order clusters based on some criterion (e.g., means of the clusters)
+# you can do something similar to what you did for k-means
+#means_per_cluster <- t(apply(gmm_result$parameters$mean, 1, function(x) as.vector(x)))
+#gmm_ssd_per_cluster <- apply(means_per_cluster, 1, function(centroid) sum((cluster_data - centroid)^2))
+#ordered_gmm_clusters <- order(gmm_ssd_per_cluster)
+#cluster_order_mapping_gmm <- match(gmm_clusters, ordered_gmm_clusters)
+
+# Add the ordered GMM cluster assignment to the original data
+#cluster_data$ordered_gmm_cluster <- as.factor(cluster_order_mapping_gmm)
+
 
 # Write the header to the output file
-header <- "word\tk\tp\tsqrt_kp\tsum\tDF\tDFtoWF\tcluster\tpq"
+header <- "word\tk\tp\tsqrt_kp\tsum\tDF\tDFtoWF\tcluster"
 write(header, file = output_file)
-
-#scaled_pq_data <- scale(pq_value)
-
-#scaled_k <- scale(vsize)
 
 # Create a data frame with word, size, probability, and sqrt_kp
 d <- data.frame(
@@ -141,10 +144,8 @@ d <- data.frame(
   sum = sum_vector,
   df = doc_freq,
   df_wf = df_wf_ratio,
-  ordered_cluster = cluster_data$ordered_cluster,
-  pq = pq_value,
-  #scaled_pq_data = scaled_pq_data,
-  #scaled_k = scaled_k
+  cluster = cluster_data$dpmm_cluster  # Use the cluster assignment from cluster_data
+ # ordered_cluster = cluster_data$ordered_gmm_cluster
 )
 
 # Write the results to a tab-separated file with custom column names in the header
