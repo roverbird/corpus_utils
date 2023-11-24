@@ -142,7 +142,7 @@ d <- data.frame(
   df = doc_freq,
   df_wf = df_wf_ratio,
   ordered_cluster = cluster_data$ordered_cluster,
-  pq = pq_value,
+  pq = pq_value
   #scaled_pq_data = scaled_pq_data,
   #scaled_k = scaled_k
 )
