@@ -104,7 +104,11 @@ num_clusters <- 12
 
 ### Now we will cluster words 
 # Create a data frame with vsize and vprob
-cluster_data <- data.frame(vsize, vprob)
+# cluster_data <- data.frame(vsize, vprob)
+
+scaled_kp <- scale(sqrt_kp)
+
+cluster_data <- data.frame(scaled_kp, df_wf_ratio)
 
 # Perform k-means clustering using k and p, $DF
 kmeans_result <- kmeans(cluster_data, centers = num_clusters)

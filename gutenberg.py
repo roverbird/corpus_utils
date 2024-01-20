@@ -9,12 +9,14 @@ import re
 # Go to site https://www.gutenberg.org/
 # Find a book and look for "Plain Text UTF-8" link
 # URL for the Gutenberg book txt
- https://gutenberg.org/cache/epub/2554/pg2554.txt  # Crime and Punishment
+# https://gutenberg.org/cache/epub/2554/pg2554.txt  # Crime and Punishment
 # https://www.gutenberg.org/cache/epub/2600/pg2600.txt # War and Peace
-# https://gutenberg.org/cache/epub/11/pg11.txt # Alice in Wonderland
+#url = 'https://www.gutenberg.org/cache/epub/24264/pg24264.txt' 
 # https://gutenberg.org/cache/epub/1399/pg1399.txt # Anna Karenina
 # https://gutenberg.org/cache/epub/28054/pg28054.txt # Brothers Karamazov
 # url = "https://www.gutenberg.org/cache/epub/28054/pg28054.txt"
+
+url = "https://gutenberg.org/cache/epub/6130/pg6130.txt"
 
 
 # Extract the last part of the URL as the output file name
@@ -27,13 +29,15 @@ text = response.text
 
 # Step 1: Replace Chapter breaks with a placeholder
 
-text = re.sub(r'\r\nChapter', '\r\n', text, flags=re.IGNORECASE)
+#text = re.sub(r'\r\nCHAPTER', '\r\n', text, flags=re.IGNORECASE)
+#text = re.sub(r'\r\n\r\n\r\n', '<<CHAPTER_BREAK>>', text)
+
 text = re.sub(r'\r\n\r\n\r\n', '<<CHAPTER_BREAK>>', text)
 
 #text = re.sub(r'\n\n\n\n\n\n', '<<CHAPTER_BREAK>>', text)
 
 #text = re.sub(r'\nChapter', '\n', text, flags=re.IGNORECASE)
-#text = re.sub(r'\n\nChapter', '<<CHAPTER_BREAK>>', text)
+#text = re.sub(r'\n\n\n\nChapter', '<<CHAPTER_BREAK>>', text)
 
 
 # Step 2: Remove empty lines containing whitespace characters and any remaining \n or \r
