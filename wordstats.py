@@ -1,3 +1,5 @@
+# This script is used to build word frequency matrix.
+#
 # This script converts text file to lowercase and replaces punctuation characters with spaces, 
 # counts the frequency of each word in each line and in the entire text, and outputs list of words 
 # that occur between min_frequency and max_frequency.
