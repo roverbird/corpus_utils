@@ -4,7 +4,6 @@
 # counts the frequency of each word in each line and in the entire text, and outputs list of words 
 # that occur between min_frequency and max_frequency.
 #
-# You can open resulting file as csv with fields separated by tabs for inspection.
 # Next step: use the resulting file with fit.R script.
 # 
 # Usage: python wordstats.py input.txt result.txt 3 100000 
