@@ -22,7 +22,7 @@ Of course, you can use the NBD technique also for larger collections of texts, s
 
 **ngramstats.py**: Prepares bigram frequency lists. The results are saved to a text file.
 
-**calculate.py**: Get some statistics from word frequencies using Python only.
+**calculate.py**: Get some corpus linguistics statistics from word frequencies using Python only (no `R`)
 
 **fit.R**: R script to estimate k and p parameters for NBD (Negative Binomial Distribution) assuming that word frequency distributions follow NBD
 
@@ -80,7 +80,10 @@ Now data is prepared by wordstats.py and we can calculate sum, mean, variance, a
 bash
 ```
 python ~/corpus_utils/calculate.py frequencies.txt final_stats.txt
+
 ```
+This script calculates sum (TF), mean, variance, and dispersion for each word and it also estimates Negative Binomial Parameters _k_ and _p_ using method of moments. These estimations are infrerior to Maximum likelihood (MLE) method, but they are easy to implement in Python. Input is read from space-separated file (word matrix) prepared by `wordstats.py`. Document frequency (DF), TF*IDF, and entropy are also calculated using this script.
+
 ### fit.R and fit2.R
 
 Using data prepared by wordstats.py we can estimate k and p parameters for NBD. Calculate sum for each word-token (absolute Word Frequency) and Document Frequency (DF). This is a compute-intensive operation and may take some time, especially for a larger dataset. Run at your own risk.
